@@ -1,0 +1,16 @@
+# Base 2 to base 10 converter
+import math
+
+base2 = int(input("Enter a base 2 number: "))
+base2Str = str(base2)
+base2List = []
+base10 = 0
+
+for digit in base2Str:
+    base2List.append(digit)
+base2List.reverse()
+    
+for i in range(len(base2List)): 
+    base10 = base10 + int(base2List[int(i)]) * math.pow(2, int(i))
+    
+print("Base 10 =", int(base10))
