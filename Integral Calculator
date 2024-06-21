@@ -1,0 +1,15 @@
+# Integral calculator
+import math
+
+sum = 0
+leftEndpoint = 0 # left endpoint of function
+rightEndpoint = 5 # right endpoint of function
+dx = 0.001
+x = leftEndpoint
+
+while leftEndpoint <= x <= rightEndpoint: 
+    y = 2 * x # function with respect to 'x'
+    sum = sum + y * dx
+    x = x + dx
+    
+print(sum)
