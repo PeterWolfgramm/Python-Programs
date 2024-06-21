@@ -1,0 +1,71 @@
+# Finds total time of multiple time intervals
+
+list = []
+
+def addTime(list):   
+    hoursTotalList = []
+    minutesTotalList = []
+    hoursTotal = 0
+    minutesTotal = 0
+    hoursExtra = 0
+    minutesExtra = 0
+    for timePeriod in list: 
+        #----------VARIABLES----------#
+        time = []
+        hoursList = []
+        minutesList = []
+        flag = True
+        hours = ""
+        minutes = ""
+    
+        #----------FUNCTIONS----------#
+        for digit in timePeriod: # adds each character of inputted time period into list 'time' 
+            time.append(digit)
+            
+        for i in range(len(time)): # allocates digits of list 'time' to hours and minutes lists
+            if time[i] != ':' and flag: 
+                hoursList.append(time[i])
+            elif time[i] == ':': 
+                i += 1
+                flag = False
+            elif time[i] != ':' and not flag: 
+                minutesList.append(time[i])
+        
+        for i in range(len(hoursList)): # converts items in hours list to a number of hours
+            hours = str(hours) + hoursList[i]
+        hours = int(hours)
+        
+        for i in range(len(minutesList)): # converts items in minutes list to a number of minutes
+            minutes = str(minutes) + minutesList[i]
+        minutes = int(minutes)
+        
+        hoursTotalList.append(hours) # adds number of hours to new list
+        minutesTotalList.append(minutes) # adds number of minutes to new list
+        
+    for i in hoursTotalList: # finds total hours
+        hoursTotal = hoursTotal + i
+    
+    for i in minutesTotalList: # finds total minutes
+        minutesTotal = minutesTotal + i
+        
+    if minutesTotal >= 60: # converts extra minutes to hours if necessary
+        hoursExtra = minutesTotal // 60
+        minutesTotal = minutesTotal % 60
+    if minutesTotal < 10: # formats minutes
+        minutesTotal = "0" + str(minutesTotal)
+        
+    hoursTotal = hoursTotal + hoursExtra # adds hours from extra minutes to total hours
+    
+    #----------OUTPUT----------#
+    print("TOTAL TIME =", str(hoursTotal) + ":" + str(minutesTotal)) # displays total hours and minutes
+
+def timeSlots():  
+    slots = int(input("Enter amount of time slots: ")) # prompts user to enter total number of time slots
+    print("Enter time period in X:XX format.")
+    for i in range(slots): # gives prompt for every time slot specified by user to enter time period
+        i = i + 1
+        timePeriod = input("Time period " + str(i) + " = ")  
+        list.append(timePeriod) # adds time period to list which will be used in addTime(list) method
+
+timeSlots()       
+addTime(list)
