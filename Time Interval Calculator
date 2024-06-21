@@ -1,0 +1,113 @@
+# Finds time interval from start and end time
+
+hoursStart = 0
+minutesStart = 0
+hoursEnd = 0
+minutesEnd = 0
+listStart = []
+listEnd = []
+
+def endPoints():  
+    print("Enter time in X:XX format.")
+    timeStart = input("Enter start time = ")
+    for i in timeStart:
+        listStart.append(i)
+    timeEnd = input("Enter end time = ")
+    for i in timeEnd:
+        listEnd.append(i)
+
+def convert_Start_ToNum(listStart): 
+    #----------VARIABLES----------#
+    global hoursStart, minutesStart
+    hoursExtra = 0
+    hoursList = []
+    minutesList = []
+    flag = True
+    hours = ""
+    minutes = ""
+    
+    #----------FUNCTIONS----------#
+    for i in listStart: # allocates digits of 'listStart' to hours and minutes lists
+        if i != ':' and flag: 
+            hoursList.append(i)
+        elif i == ':': 
+            flag = False
+        elif i != ':' and not flag: 
+            minutesList.append(i)
+            
+    for i in range(len(hoursList)): # converts items in hours list to a number of hours
+        hours = str(hours) + hoursList[i]
+    hours = int(hours)
+    
+    for i in range(len(minutesList)): # converts items in minutes list to a number of minutes
+        minutes = str(minutes) + minutesList[i]
+    minutes = int(minutes)
+        
+    if minutes >= 60: # converts extra minutes to hours if necessary
+        hoursExtra = minutes // 60
+        minutes = minutes % 60
+    if minutes < 10: # formats minutes
+        minutes = "0" + str(minutes)
+        
+    hours = hours + hoursExtra # adds hours from extra minutes to total hours
+    
+    hoursStart = hoursStart + int(hours)
+    minutesStart = minutesStart + int(minutes)
+
+def convert_End_ToNum(listEnd): 
+    #----------VARIABLES----------#
+    global hoursEnd, minutesEnd
+    hoursExtra = 0
+    hoursList = []
+    minutesList = []
+    flag = True
+    hours = ""
+    minutes = ""
+    
+    #----------FUNCTIONS----------#
+    for i in listEnd: # allocates digits of 'listEnd' to hours and minutes lists
+        if i != ':' and flag: 
+            hoursList.append(i)
+        elif i == ':': 
+            flag = False
+        elif i != ':' and not flag: 
+            minutesList.append(i)
+            
+    for i in range(len(hoursList)): # converts items in hours list to a number of hours
+        hours = str(hours) + hoursList[i]
+    hours = int(hours)
+    
+    for i in range(len(minutesList)): # converts items in minutes list to a number of minutes
+        minutes = str(minutes) + minutesList[i]
+    minutes = int(minutes)
+    
+    if minutes >= 60: # converts extra minutes to hours if necessary
+        hoursExtra = minutes // 60
+        minutes = minutes % 60
+    if minutes < 10: # formats minutes
+        minutes = "0" + str(minutes)
+        
+    hours = hours + hoursExtra # adds hours from extra minutes to total hours
+    
+    hoursEnd = hoursEnd + int(hours)
+    minutesEnd = minutesEnd + int(minutes)
+    
+def subtractTime(hoursStart, minutesStart, hoursEnd, minutesEnd):
+    if minutesEnd < minutesStart: 
+        minutesEnd += 60
+        hoursEnd -= 1
+    if hoursEnd < hoursStart: 
+        hoursEnd += 12
+        
+    hoursFinal = hoursEnd - hoursStart
+    minutesFinal = minutesEnd - minutesStart
+    
+    if minutesFinal < 10: 
+        minutesFinal = "0" + str(minutesFinal)
+    
+    print("TIME INTERVAL =", str(hoursFinal) + ":" + str(minutesFinal))
+    
+endPoints()
+convert_Start_ToNum(listStart)
+convert_End_ToNum(listEnd)
+subtractTime(hoursStart, minutesStart, hoursEnd, minutesEnd)
