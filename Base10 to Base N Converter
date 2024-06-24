@@ -1,0 +1,42 @@
+# Convert base 10 to base n
+import math
+
+base = int(input("Enter base to convert to: "))
+base10 = int(input("Enter base 10 number: "))
+base10Copy = base10
+exponent = 0
+remain = base10
+exponentList = []
+baseNList = []
+ruler = []
+baseN = ""
+
+while remain >= 1:
+    while True: 
+        if base10 - math.pow(base, exponent) < 0: 
+            exponent = exponent - 1 
+            exponentList.append(exponent)
+            break
+        else: 
+            exponent = exponent + 1 
+        
+    remain = base10 - math.pow(base, exponent)
+    base10 = remain
+    exponent = 0 
+
+highestPower = exponentList[0] 
+
+for i in range(highestPower + 1): 
+    ruler.append(i) 
+
+ruler.reverse() 
+
+for i in range(len(ruler)): 
+    if ruler[i] in exponentList: 
+        baseNList.insert(i, 1)
+    else: 
+        baseNList.insert(i, 0)
+
+for i in baseNList: 
+    baseN = baseN + str(i)
+print("base " + str(base) + " =", baseN)
