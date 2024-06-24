@@ -1,0 +1,16 @@
+# Base n to base 10 converter
+import math
+
+base = int(input("Enter base: "))
+baseN = (input("Enter base " + str(base) + " number: "))
+baseNList = []
+base10 = 0
+
+for digit in baseN:
+    baseNList.append(digit)
+baseNList.reverse()
+    
+for i in range(len(baseNList)): 
+    base10 = base10 + int(baseNList[int(i)]) * math.pow(base, int(i))
+    
+print("Base 10 =", int(base10))
