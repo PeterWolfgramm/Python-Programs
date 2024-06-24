@@ -1,9 +1,9 @@
 # Pokemon type advantages
-types = ["normal", "fire", "water", "electric", "grass", "ice", "fighting", "poison", "ground", "flying", "psychic", "bug", "rock", "ghost", "dragon", "dark", "steel", "fairy"]
+types = ["normal", "fire", "water", "electric", "grass", "ice", "fighting", "poison", "ground", "flying", "psychic", "bug", "rock", "ghost", "dragon", "dark", "steel"]
 
 offenseTypes = []
 
-print("Types: \nnormal, fire, water, electric, grass, ice, fighting, poison, ground, flying, psychic, bug, rock, ghost, dragon, dark, steel, fairy\n")
+print("Types: \nnormal, fire, water, electric, grass, ice, fighting, poison, ground, flying, psychic, bug, rock, ghost, dragon, dark, steel\n")
 numberOfTypesInput = input("Enter number of types used: ")
 for i in range(int(numberOfTypesInput)): 
     offenseTypesInput = input("Enter #" + str(i+1) + " type: ")
@@ -11,51 +11,53 @@ for i in range(int(numberOfTypesInput)):
 
 for type in offenseTypes:
     if type == "normal": 
-        against = []
+        against = [] # 0
     elif type == "fire": 
-        against = ["grass", "ice", "bug", "steel"]
+        against = ["grass", "ice", "bug", "steel"] # 4
     elif type == "water": 
-        against = ["fire", "ground", "rock"]
+        against = ["fire", "ground", "rock"] # 3
     elif type == "electric": 
-        against = ["water", "flying"]
+        against = ["water", "flying"] # 2
     elif type == "grass": 
-        against = ["water", "ground", "rock"]
+        against = ["water", "ground", "rock"] # 3
     elif type == "ice": 
-        against = ["grass", "ground", "flying", "dragon"]
+        against = ["grass", "ground", "flying", "dragon"] # 4
     elif type == "fighting":
-        against = ["normal", "ice", "rock", "dark", "steel"]
+        against = ["normal", "ice", "rock", "dark", "steel"] # 5
     elif type == "poison": 
-        against = ["grass", "fairy"]
+        against = ["grass", "fairy"] # 2
     elif type == "ground": 
-        against = ["fire", "electric", "poison", "rock", "steel"]
+        against = ["fire", "electric", "poison", "rock", "steel"] # 5
     elif type == "flying":
-        against = ["grass", "fighting", "bug"]
+        against = ["grass", "fighting", "bug"] # 3
     elif type == "psychic":
-        against = ["fighting", "poison"]
+        against = ["fighting", "poison"] # 2
     elif type == "bug":
-        against = ["grass", "psychic", "dark"]
+        against = ["grass", "psychic", "dark"] # 3
     elif type == "rock": 
-        against = ["fire", "ice", "flying", "bug"]
+        against = ["fire", "ice", "flying", "bug"] # 4
     elif type == "ghost": 
-        against = ["psychic", "ghost"]
+        against = ["psychic", "ghost"] # 2
     elif type == "dragon": 
-        against = ["dragon"]
+        against = ["dragon"] # 1
     elif type == "dark": 
-        against = ["psychic", "ghost"]
+        against = ["psychic", "ghost"] # 2
     elif type == "steel": 
-        against = ["ice", "rock", "fairy"]
+        against = ["ice", "rock", "fairy"] # 3
+    '''
     elif type == "fairy": 
-        against = ["fighting", "dragon", "dark"]
+        against = ["fighting", "dragon", "dark"] # 3
+    '''
     for i in against: 
         if i in types: 
             types.remove(i)
 
-print("\nOFFENSE TYPES USED =", str(len(offenseTypes)) + ":\n")
-
-for i in offenseTypes: 
-    print(i)
-
 print("\nTYPES LEFT TO BEAT =", str(len(types)) + ":\n")
         
 for i in types: 
-    print(i) # shows which types are left which offenseTypes aren't super effective against
+    print(i) 
+    
+# Gen 1: grass, ice, fighting, ground, flying, bug, ghost = 7 types
+    # Assuming no dark, steel types
+# Gen 2: grass, ice, fighting, ground, flying, dark = 6 types
+# Gen 3: grass, ice, fighting, ground, flying, dark = 6 types
