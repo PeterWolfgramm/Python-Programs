@@ -1,0 +1,37 @@
+import random
+
+maxPlays = 1000
+percentDeviation = 4
+
+deviation = maxPlays * (percentDeviation / 100)
+min = (maxPlays // 3) - deviation
+max = (maxPlays // 3) + deviation
+cycles = 1
+print("Standard range =", int(min), "-", int(max), "\nDeviation =", str(percentDeviation) + "%")
+
+def repeatGame():
+    global maxPlays, cycles
+    plays = 0
+    WIN = 0
+    LOSS = 0
+    DRAW = 0
+    while plays < maxPlays: 
+        moveList = ["rock", "paper", "scissors"]
+        computerMove_1 = random.choice(moveList)
+        computerMove_2 = random.choice(moveList)
+    
+        if computerMove_1 == computerMove_2: 
+            DRAW += 1
+        elif moveList.index(computerMove_1) == moveList.index(computerMove_2) + 1 or computerMove_1 == "rock" and computerMove_2 == "scissors": 
+            WIN += 1
+        elif moveList.index(computerMove_1) == moveList.index(computerMove_2) - 1 or computerMove_1 == "scissors" and computerMove_2 == "rock": 
+            LOSS += 1
+        plays += 1
+        
+    if min <= WIN <= max and min <= LOSS <= max and min <= DRAW <= max:
+        cycles += 1
+        repeatGame()
+    else: 
+        print("Cycles =", cycles, "\nPlays per cycle =", plays, "\n\nWIN:", WIN, "\nLOSS:", LOSS, "\nDRAW:", DRAW)
+    
+repeatGame()
