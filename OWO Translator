@@ -1,0 +1,7 @@
+# OWO translator
+
+userText = input("Enter text: ")
+
+userTextTranslation = userText.replace("l", "w").replace("r", "w").replace("L", "W").replace("R", "W")
+    
+print(userTextTranslation)
