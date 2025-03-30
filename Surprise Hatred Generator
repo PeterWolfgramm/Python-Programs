@@ -1,0 +1,12 @@
+userQuestion = input("Ask a question: ")
+
+options = ["Master of failure", "Walking disaster", "Unlikely genius", "Professional procrastinator", "Perpetually confused", "Effortless disappointment", "Barely functional", "Ambitiionless wonder"]
+
+userNumber = int(input("Give me a number from 1 - 30: "))
+# computer counts from 1 to chosen number
+if userNumber % 2 == 0: 
+    userChoice = int(input("Choose a number between 1 - 4: "))
+elif userNumber % 2 == 1: 
+    userChoice = int(input("Choose a number between 5 - 8: "))
+
+print(options[userChoice])
